@@ -8,12 +8,15 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
 
 namespace USA.Trip
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
+        NavigationView navigationView;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -22,15 +25,15 @@ namespace USA.Trip
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            fab.Click += FabOnClick;
+            //FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            //fab.Click += FabOnClick;
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
             toggle.SyncState();
 
-            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
         }
 
@@ -55,11 +58,11 @@ namespace USA.Trip
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            int id = item.ItemId;
-            if (id == Resource.Id.action_settings)
-            {
-                return true;
-            }
+            //int id = item.ItemId;
+            //if (id == Resource.Id.action_settings)
+            //{
+            //    return true;
+            //}
 
             return base.OnOptionsItemSelected(item);
         }
@@ -74,6 +77,16 @@ namespace USA.Trip
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.nav_home:
+                   item.SetCheckable(true);
+                    break;
+                default:
+                    Toast.MakeText(this, "No view found", ToastLength.Short).Show();
+                    break;
+            }
 
             //if (id == Resource.Id.nav_camera)
             //{
