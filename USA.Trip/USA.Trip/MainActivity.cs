@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android;
 using Android.App;
 using Android.OS;
@@ -9,6 +10,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using USA.Trip.Views;
 
 namespace USA.Trip
 {
@@ -17,6 +19,7 @@ namespace USA.Trip
     {
         NavigationView navigationView;
         ViewFlipper viewFlipper;
+        List<iView> views;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,6 +38,8 @@ namespace USA.Trip
             navigationView.SetNavigationItemSelectedListener(this);
 
             viewFlipper = FindViewById<ViewFlipper>(Resource.Id.viewFlipper);
+
+            LoadViews();
         }
 
         public override void OnBackPressed()
@@ -93,6 +98,24 @@ namespace USA.Trip
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected void LoadViews()
+        {
+            views = new List<iView>
+            {
+                new Budget(),
+                new Expenses(),
+                new FlightToPoland(),
+                new FlightToUsa(),
+                new Home(),
+                new Income()
+            };
+
+            foreach (var view in views)
+            {
+                view.OnCreate(this);
+            }
         }
     }
 }

@@ -69,6 +69,13 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Budget.cs" />
+    <Compile Include="Views\Expenses.cs" />
+    <Compile Include="Views\FlightToPoland.cs" />
+    <Compile Include="Views\FlightToUsa.cs" />
+    <Compile Include="Views\Home.cs" />
+    <Compile Include="Views\Income.cs" />
+    <Compile Include="Views\iView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -161,6 +168,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
