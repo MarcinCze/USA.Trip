@@ -19,7 +19,33 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <!-- Child 0 -->
+        <include layout="@layout/content_main" />
+
+        <!-- Child 1 -->
+        <include layout="@layout/content_home" />
+
+        <!-- Child 2 -->
+        <include layout="@layout/content_flight_nyc" />
+
+        <!-- Child 3 -->
+        <include layout="@layout/content_flight_pol" />
+
+        <!-- Child 4 -->
+        <include layout="@layout/content_budget" />
+
+        <!-- Child 5 -->
+        <include layout="@layout/content_income" />
+
+        <!-- Child 6 -->
+        <include layout="@layout/content_expenses" />
+
+        </ViewFlipper>
 
     <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

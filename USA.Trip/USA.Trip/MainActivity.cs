@@ -16,6 +16,7 @@ namespace USA.Trip
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         NavigationView navigationView;
+        ViewFlipper viewFlipper;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,9 +26,6 @@ namespace USA.Trip
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-            //FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-            //fab.Click += FabOnClick;
-
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
@@ -35,6 +33,8 @@ namespace USA.Trip
 
             navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
+
+            viewFlipper = FindViewById<ViewFlipper>(Resource.Id.viewFlipper);
         }
 
         public override void OnBackPressed()
@@ -56,67 +56,38 @@ namespace USA.Trip
             return true;
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            //int id = item.ItemId;
-            //if (id == Resource.Id.action_settings)
-            //{
-            //    return true;
-            //}
-
-            return base.OnOptionsItemSelected(item);
-        }
-
-        private void FabOnClick(object sender, EventArgs eventArgs)
-        {
-            View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-        }
-
         public bool OnNavigationItemSelected(IMenuItem item)
         {
-            int id = item.ItemId;
-
             switch (item.ItemId)
             {
                 case Resource.Id.nav_home:
-                   item.SetCheckable(true);
+                    viewFlipper.DisplayedChild = Constants.ContentView.Home;
+                    break;
+                case Resource.Id.nav_flight_usa:
+                    viewFlipper.DisplayedChild = Constants.ContentView.FlightToNyc;
+                    break;
+                case Resource.Id.nav_flight_pol:
+                    viewFlipper.DisplayedChild = Constants.ContentView.FlightHome;
+                    break;
+                case Resource.Id.nav_budget:
+                    viewFlipper.DisplayedChild = Constants.ContentView.Budget;
+                    break;
+                case Resource.Id.nav_income:
+                    viewFlipper.DisplayedChild = Constants.ContentView.Income;
+                    break;
+                case Resource.Id.nav_expenses:
+                    viewFlipper.DisplayedChild = Constants.ContentView.Expenses;
                     break;
                 default:
                     Toast.MakeText(this, "No view found", ToastLength.Short).Show();
                     break;
             }
 
-            //if (id == Resource.Id.nav_camera)
-            //{
-            //    // Handle the camera action
-            //}
-            //else if (id == Resource.Id.nav_gallery)
-            //{
-
-            //}
-            //else if (id == Resource.Id.nav_slideshow)
-            //{
-
-            //}
-            //else if (id == Resource.Id.nav_manage)
-            //{
-
-            //}
-            //else if (id == Resource.Id.nav_share)
-            //{
-
-            //}
-            //else if (id == Resource.Id.nav_send)
-            //{
-
-            //}
-
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
