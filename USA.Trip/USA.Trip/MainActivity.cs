@@ -40,6 +40,12 @@ namespace USA.Trip
             navigationView.SetNavigationItemSelectedListener(this);
 
             viewFlipper = FindViewById<ViewFlipper>(Resource.Id.viewFlipper);
+
+            Window.SetBackgroundDrawableResource(Resource.Drawable.background);
+
+            Window.AddFlags(WindowManagerFlags.LayoutNoLimits);
+            Window.AddFlags(WindowManagerFlags.LayoutInScreen);
+            Window.DecorView.SetFitsSystemWindows(true);
         }
 
         public override void OnBackPressed()

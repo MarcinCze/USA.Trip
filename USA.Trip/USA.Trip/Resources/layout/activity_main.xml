@@ -8,6 +8,13 @@
                                         android:fitsSystemWindows="true"
                                         tools:openDrawer="start">
 
+    <!--<ImageView
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />-->
+
   <include
     layout="@layout/app_bar_main"
     android:layout_width="match_parent"
