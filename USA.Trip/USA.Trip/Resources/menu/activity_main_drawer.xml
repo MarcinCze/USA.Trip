@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Dashboard" />
+        <!--<item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />-->
+    </group>
+
+    <item android:title="Flight">
+        <menu>
+            <item
+                android:id="@+id/nav_flight_nyc"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Flight to NYC" />
+            <item
+                android:id="@+id/nav_flight_krk"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Flight to KRK" />
+        </menu>
+    </item>
+
+  <item android:title="Budget">
+    <menu>
+      <item
+          android:id="@+id/nav_budget_summary"
+          android:icon="@drawable/ic_menu_share"
+          android:title="Summary" />
+      <item
+          android:id="@+id/nav_budget_income"
+          android:icon="@drawable/ic_menu_share"
+          android:title="Income" />
+      <item
+          android:id="@+id/nav_budget_expenses"
+          android:icon="@drawable/ic_menu_send"
+          android:title="Expenses" />
+    </menu>
+  </item>
+
+  <item android:title="Others">
+    <menu>
+      <item
+          android:id="@+id/nav_others_hotel"
+          android:icon="@drawable/ic_menu_share"
+          android:title="Hotel" />
+      <item
+          android:id="@+id/nav_others_subway"
+          android:icon="@drawable/ic_menu_share"
+          android:title="Subway" />
+    </menu>
+  </item>
+
+</menu>
