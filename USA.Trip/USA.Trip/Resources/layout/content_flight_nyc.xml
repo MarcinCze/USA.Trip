@@ -55,9 +55,9 @@
             android:id="@+id/flightNycFlight1"
             android:visibility="visible"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_below="@+id/flightNycHeader"
             android:background="@drawable/layout_frame"
             android:layout_width="match_parent"
@@ -129,7 +129,6 @@
                 android:minWidth="25px"
                 android:minHeight="25px" />
 
-
             <TextView
                 android:id="@+id/flightNycTxt1"
                 android:text="Duration: 01 h 20 min"
@@ -173,9 +172,9 @@
             android:id="@+id/flightNycFlight2"
             android:visibility="invisible"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_below="@+id/flightNycHeader"
             android:background="@drawable/layout_frame"
             android:layout_width="match_parent"
@@ -246,7 +245,6 @@
                 android:layout_height="wrap_content"
                 android:minWidth="25px"
                 android:minHeight="25px" />
-
 
             <TextView
                 android:id="@+id/flightNycTxt1"

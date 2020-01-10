@@ -7,10 +7,53 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Hotel" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/layout_frame">
+        
+        <ImageView
+            android:src="@drawable/logo_doubletree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/hotelImageLogoDoubleTree" />
+        
+        <TextView
+            android:text="DoubleTree by Hilton Hotel"
+            android:layout_below="@+id/hotelImageLogoDoubleTree"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:id="@+id/hotelLabelHotelName1" />
+
+        <TextView
+            android:text="New York City - Chelsea"
+            android:layout_below="@+id/hotelLabelHotelName1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:id="@+id/hotelLabelHotelName2" />
+
+        
+
+
+
+        </RelativeLayout>
 
 </RelativeLayout>
