@@ -13,6 +13,7 @@
         android:layout_marginTop="100dp">
 
         <RelativeLayout
+            android:id="@+id/flightNycHeader"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:paddingTop="10dp"
@@ -49,6 +50,242 @@
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/flightNycFlight1"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/flightNycHeader"
+            android:background="@drawable/layout_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:text="06:00"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="Krakow (KRK)"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="140dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="07:20"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="70dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="Munich - Franz Josef Strauss (MUC), Terminal 2"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginRight="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+            
+                <ImageView
+                android:layout_marginTop="-300dp"
+                android:src="@drawable/logo_lufthansa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="LH1627"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="250dp"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#f9ba00"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+
+            <TextView
+                android:id="@+id/flightNycTxt1"
+                android:text="Duration: 01 h 20 min"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="400dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:id="@+id/flightNycTxt2"
+                android:layout_below="@+id/flightNycTxt1"
+                android:text="Operated by Lufthansa"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:layout_below="@+id/flightNycTxt2"
+                android:text="Aircraft: Airbus Industrie A320-100/200"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/flightNycFlight2"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/flightNycHeader"
+            android:background="@drawable/layout_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:text="12:15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="Munich - Franz Josef Strauss (MUC), Terminal 2"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="140dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="15:40"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="70dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:text="New York - JFK International, NY (JFK), Terminal 1"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginRight="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+            
+                <ImageView
+                android:layout_marginTop="-300dp"
+                android:src="@drawable/logo_lufthansa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="LH410"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="250dp"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#f9ba00"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+
+            <TextView
+                android:id="@+id/flightNycTxt1"
+                android:text="Duration: 09 h 25 min"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="400dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:id="@+id/flightNycTxt2"
+                android:layout_below="@+id/flightNycTxt1"
+                android:text="Operated by Lufthansa"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            <TextView
+                android:layout_below="@+id/flightNycTxt2"
+                android:text="Aircraft: Airbus Industrie A340-600"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="25px"
+                android:minHeight="25px" />
+
+            </RelativeLayout>
 
     </RelativeLayout>
 

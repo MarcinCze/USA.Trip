@@ -22,6 +22,7 @@ namespace USA.Trip
     {
         ViewFlipper viewFlipper;
         NavigationView navigationView;
+        Switch flightNycSwitch;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,6 +47,8 @@ namespace USA.Trip
             Window.AddFlags(WindowManagerFlags.LayoutNoLimits);
             Window.AddFlags(WindowManagerFlags.LayoutInScreen);
             Window.DecorView.SetFitsSystemWindows(true);
+
+            Initialize();
         }
 
         public override void OnBackPressed()
@@ -110,6 +113,32 @@ namespace USA.Trip
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        void Initialize()
+        {
+            flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
+            flightNycSwitch.Click += FlightNycSwitch_Click;
+
+            FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
+            FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
+        }
+
+        private void FlightNycSwitch_Click(object sender, EventArgs e)
+        {
+            var flight1 = FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1);
+            var flight2 = FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2);
+
+            if (flightNycSwitch.Checked)
+            {
+                flight1.Visibility = ViewStates.Invisible;
+                flight2.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                flight1.Visibility = ViewStates.Visible;
+                flight2.Visibility = ViewStates.Invisible;
+            }
         }
     }
 }
