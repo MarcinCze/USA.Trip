@@ -41,7 +41,7 @@
                 android:id="@+id/flightNycSwitch" />
 
             <TextView
-                android:text="MUC - NYC"
+                android:text="MUC - JFK"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff"
                 android:layout_marginRight="30dp"
@@ -53,7 +53,7 @@
 
         <RelativeLayout
             android:id="@+id/flightNycFlight1"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
@@ -89,7 +89,7 @@
             <TextView
                 android:text="07:20"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
 
             <TextView
                 android:text="Munich - Franz Josef Strauss (MUC), Terminal 2"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginRight="20dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -109,8 +109,8 @@
                 android:minWidth="25px"
                 android:minHeight="25px" />
             
-                <ImageView
-                android:layout_marginTop="-300dp"
+            <ImageView
+                android:layout_marginTop="-220dp"
                 android:src="@drawable/logo_lufthansa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -118,7 +118,7 @@
             <TextView
                 android:text="LH1627"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="300dp"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#f9ba00"
@@ -207,7 +207,7 @@
             <TextView
                 android:text="15:40"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
 
             <TextView
                 android:text="New York - JFK International, NY (JFK), Terminal 1"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginLeft="140dp"
                 android:layout_marginRight="20dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -227,8 +227,8 @@
                 android:minWidth="25px"
                 android:minHeight="25px" />
             
-                <ImageView
-                android:layout_marginTop="-300dp"
+            <ImageView
+                android:layout_marginTop="-220dp"
                 android:src="@drawable/logo_lufthansa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -236,7 +236,7 @@
             <TextView
                 android:text="LH410"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="300dp"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#f9ba00"

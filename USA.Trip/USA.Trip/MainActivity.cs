@@ -22,7 +22,7 @@ namespace USA.Trip
     {
         ViewFlipper viewFlipper;
         NavigationView navigationView;
-        Switch flightNycSwitch;
+        Switch flightNycSwitch, flightKrkSwitch;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -120,8 +120,30 @@ namespace USA.Trip
             flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
             flightNycSwitch.Click += FlightNycSwitch_Click;
 
+            flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
+            flightKrkSwitch.Click += FlightKrkSwitch_Click; ;
+
             FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
+            FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
+            FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+        }
+
+        private void FlightKrkSwitch_Click(object sender, EventArgs e)
+        {
+            var flight1 = FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1);
+            var flight2 = FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2);
+
+            if (flightKrkSwitch.Checked)
+            {
+                flight1.Visibility = ViewStates.Invisible;
+                flight2.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                flight1.Visibility = ViewStates.Visible;
+                flight2.Visibility = ViewStates.Invisible;
+            }
         }
 
         private void FlightNycSwitch_Click(object sender, EventArgs e)
