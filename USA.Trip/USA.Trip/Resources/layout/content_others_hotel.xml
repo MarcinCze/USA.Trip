@@ -81,6 +81,7 @@
             android:layout_height="wrap_content" />
         
         <ImageView
+            android:id="@+id/hotelImageIconPhone"
             android:layout_below="@+id/hotelImageIconPointer"
             android:src="@drawable/icon_phone_100"
             android:layout_width="50dp"
@@ -95,6 +96,158 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="80dp"
             android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <TextView
+            android:id="@+id/hotelLabelCheckInNmbr"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:text="8"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="50dp" />
+        
+        <TextView
+            android:text="SAT"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/hotelLabelCheckInNmbr"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="FEB"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/hotelLabelCheckInNmbr"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <TextView
+            android:text="Check In:"
+            android:layout_below="@+id/hotelLabelCheckInNmbr"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:text="4:00 PM"
+            android:layout_below="@+id/hotelLabelCheckInNmbr"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="70dp"
+            android:textColor="#ffffff" />
+
+        <View
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginLeft="120dp"
+            android:background="#00FFFF"/>
+
+        <View
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_width="1dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="50dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginRight="120dp"
+            android:background="#00FFFF"/>
+
+        <TextView
+            android:id="@+id/hotelLabelCheckOutNmbr"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:text="16"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="55dp"
+            android:textSize="50dp" />
+
+        <TextView
+            android:text="SUN"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffff"
+            android:layout_alignParentRight="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="FEB"
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="12dp"
+            android:textColor="#ffffff"
+            android:layout_alignParentRight="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Check Out:"
+            android:layout_below="@+id/hotelLabelCheckOutNmbr"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="60dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:text="12:00 PM"
+            android:layout_below="@+id/hotelLabelCheckOutNmbr"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="#ffffff" />
+        
+        <ImageView
+            android:layout_below="@+id/hotelImageIconPhone"
+            android:id="@+id/hotelImageIconSleep"
+            android:src="@drawable/icon_sleep_100"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        
+        <TextView
+            android:text="8 Nights"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/hotelImageIconSleep"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
