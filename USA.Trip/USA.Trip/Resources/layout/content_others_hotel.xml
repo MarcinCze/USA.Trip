@@ -18,6 +18,7 @@
         android:background="@drawable/layout_frame">
         
         <ImageView
+            android:id="@+id/hotelImageLogoDoubleTree"
             android:src="@drawable/logo_doubletree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,20 +26,21 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:minWidth="25px"
-            android:minHeight="25px"
-            android:id="@+id/hotelImageLogoDoubleTree" />
+            android:minHeight="25px" />
         
         <TextView
+            android:id="@+id/hotelLabelHotelName1"
             android:text="DoubleTree by Hilton Hotel"
             android:layout_below="@+id/hotelImageLogoDoubleTree"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="-20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
-            android:id="@+id/hotelLabelHotelName1" />
+            android:textColor="#ffffff" />
 
         <TextView
+            android:id="@+id/hotelLabelHotelName2"
             android:text="New York City - Chelsea"
             android:layout_below="@+id/hotelLabelHotelName1"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -47,10 +49,54 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_centerHorizontal="true"
-            android:textColor="#ffffff"
-            android:id="@+id/hotelLabelHotelName2" />
-
+            android:textColor="#ffffff" />
         
+        <ImageView
+            android:id="@+id/hotelImageIconPointer"
+            android:layout_below="@+id/hotelLabelHotelName2"
+            android:src="@drawable/icon_pointer_100"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        
+        <TextView
+            android:layout_below="@+id/hotelLabelHotelName2"
+            android:text="128 West 29th Street"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="80dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/hotelLabelHotelName2"
+            android:text="New York NY 10001 US"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="55dp"
+            android:layout_marginLeft="80dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <ImageView
+            android:layout_below="@+id/hotelImageIconPointer"
+            android:src="@drawable/icon_phone_100"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp" />
+        
+        <TextView
+            android:text="12125640994"
+            android:layout_below="@+id/hotelImageIconPointer"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 
