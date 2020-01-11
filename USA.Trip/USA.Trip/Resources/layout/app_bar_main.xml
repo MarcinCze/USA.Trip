@@ -39,6 +39,7 @@
         <include layout="@layout/content_budget_expenses" />
         <include layout="@layout/content_others_hotel" />
         <include layout="@layout/content_others_subway" />
+        <include layout="@layout/content_others_subway_night" />
 
     </ViewFlipper>
 

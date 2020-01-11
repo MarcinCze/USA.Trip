@@ -12,6 +12,7 @@
             public const int BudgetExpenses = 6;
             public const int OthersHotel = 7;
             public const int OthersSubway = 8;
+            public const int OthersSubwayNight = 9;
         }
     }
 }

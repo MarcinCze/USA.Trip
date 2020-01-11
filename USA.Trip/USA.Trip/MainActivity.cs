@@ -98,6 +98,9 @@ namespace USA.Trip
                 case Resource.Id.nav_others_subway:
                     viewFlipper.DisplayedChild = Constants.Views.OthersSubway;
                     break;
+                case Resource.Id.nav_others_subway_night:
+                    viewFlipper.DisplayedChild = Constants.Views.OthersSubwayNight;
+                    break;
                 default:
                     Toast.MakeText(Application.Context, "View not found", ToastLength.Short).Show();
                     break;
