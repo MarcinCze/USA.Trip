@@ -8,6 +8,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
 
 using System;
 
@@ -136,6 +137,21 @@ namespace USA.Trip
             FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+
+            // Populate Outcome
+            var expenses = new List<OutcomeEntry>
+            {
+                new OutcomeEntry("Hotel", 900),
+                new OutcomeEntry("Flight", 1250.99)
+            };
+
+            for (int i=0; i<200; i++)
+            {
+                expenses.Add(new OutcomeEntry($"Random_{i}", 100 * i));
+            }
+
+            var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
+            listView.Adapter = new BudgetExpensesAdapter(this, expenses);
         }
 
         private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)
