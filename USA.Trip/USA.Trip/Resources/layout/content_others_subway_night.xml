@@ -7,10 +7,13 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
+    <ImageButton
+        android:layout_centerInParent="true"
+        android:src="@drawable/icon_other_subway_pdf_256"
+        android:background="#7DFFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Subway" />
+        android:tag="SUBWAY_NIGHT"
+        android:id="@+id/othersSubwayNightButtonOpen" />
 
 </RelativeLayout>

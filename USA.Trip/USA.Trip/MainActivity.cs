@@ -1,6 +1,4 @@
-﻿using System;
-using Android;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -10,6 +8,8 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+
+using System;
 
 namespace USA.Trip
 {
@@ -23,6 +23,7 @@ namespace USA.Trip
         ViewFlipper viewFlipper;
         NavigationView navigationView;
         Switch flightNycSwitch, flightKrkSwitch;
+        ImageButton othersSubwayButtonOpen, othersSubwayNightButtonOpen;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -126,10 +127,20 @@ namespace USA.Trip
             flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
             flightKrkSwitch.Click += FlightKrkSwitch_Click; ;
 
+            othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
+            othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
+            othersSubwayNightButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayNightButtonOpen);
+            othersSubwayNightButtonOpen.Click += OthersSubwayButtonOpen_Click;
+
             FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+        }
+
+        private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)
+        {
+            Toast.MakeText(Application.Context, $"NOT IMPLEMENTED", ToastLength.Long).Show();
         }
 
         private void FlightKrkSwitch_Click(object sender, EventArgs e)
