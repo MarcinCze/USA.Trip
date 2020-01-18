@@ -27,10 +27,16 @@ namespace USA.Trip
         {
             var item = items[position];
             View view = convertView;
-            if (view == null) // no view to re-use, create new
+            if (view == null) // no view to re-use, create new 
                 view = context.LayoutInflater.Inflate(Resource.Layout.list_expenses_item, null);
+
             view.FindViewById<TextView>(Resource.Id.listExpensesItemName).Text = item.Name;
-            view.FindViewById<TextView>(Resource.Id.listExpensesItemAmount).Text = $"$ {item.Amount}";
+            view.FindViewById<TextView>(Resource.Id.listExpensesItemAmount).Text = $"$ {item.Amount:0.00}";
+            view.FindViewById<TextView>(Resource.Id.listExpensesItemDateTime).Text = $"{item.Date:d.MM}";
+
+            view.FindViewById<ImageView>(Resource.Id.listExpensesItemPaymentIcon)
+                .SetImageResource(item.Payment == PaymentMethod.Card ? Resource.Drawable.icon_credit_card_256 : Resource.Drawable.icon_money_256);
+
             return view;
         }
     }

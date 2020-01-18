@@ -138,17 +138,18 @@ namespace USA.Trip
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
 
+            //=========================================================================================================
             // Populate Outcome
             var expenses = new List<OutcomeEntry>
             {
-                new OutcomeEntry("Hotel", 900),
-                new OutcomeEntry("Flight", 1250.99)
+                new OutcomeEntry("Hotel", 919.45, PaymentMethod.Card),
+                new OutcomeEntry("Flight", 256.49, PaymentMethod.Card),
+                new OutcomeEntry("Da Nino Restaurant", 101.25, PaymentMethod.Card)
             };
 
-            for (int i=0; i<200; i++)
-            {
-                expenses.Add(new OutcomeEntry($"Random_{i}", 100 * i));
-            }
+            for (int i=0; i<100; i++)
+                expenses.Add(new OutcomeEntry($"Random_{i}", i, PaymentMethod.Cash));
+            //=========================================================================================================
 
             var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
             listView.Adapter = new BudgetExpensesAdapter(this, expenses);

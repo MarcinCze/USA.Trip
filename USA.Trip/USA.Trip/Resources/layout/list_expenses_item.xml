@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
    android:layout_width="fill_parent"
    android:layout_height="wrap_content"
@@ -14,19 +14,9 @@
             android:id="@+id/listExpensesItemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20dip"
             android:textStyle="italic"
-         />
-
-        <TextView
-             android:text="$ 919.99"
-             android:id="@+id/listExpensesItemAmount"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:textSize="25dip"
-             android:textColor="#000000"
-             android:layout_marginLeft="230dp"
          />
 
         <TextView
@@ -35,10 +25,27 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:textSize="15dip"
-             android:textColor="#000000"
+             android:textColor="#FFFFFF"
              android:layout_marginLeft="20dp"
              android:layout_below="@+id/listExpensesItemName"
          />
+
+        <TextView
+             android:text="$ 919.99"
+             android:id="@+id/listExpensesItemAmount"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="25dip"
+             android:textColor="#FFFFFF"
+             android:layout_marginLeft="200dp"
+         />
+        
+        <ImageView
+            android:id="@+id/listExpensesItemPaymentIcon"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_money_256"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
 
     </RelativeLayout>
 </RelativeLayout >

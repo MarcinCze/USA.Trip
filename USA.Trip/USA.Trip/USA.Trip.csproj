@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="BudgetExpensesAdapter.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="OutcomeEntry.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -238,6 +239,12 @@
     <AndroidResource Include="Resources\layout\list_expenses_item.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_credit_card_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_money_256.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
