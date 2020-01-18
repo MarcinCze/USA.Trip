@@ -6,6 +6,38 @@ using System.Collections.Generic;
 
 namespace USA.Trip
 {
+    public static class BudgetExpensesAdapterFactory
+    {
+        public static BudgetExpensesAdapter Create(Activity context)
+        {
+            return new BudgetExpensesAdapter(context, Load());
+        }
+
+        private static List<OutcomeEntry> Load()
+        {
+            //TODO load from memory
+
+            //=========================================================================================================
+            // Populate Outcome
+            var expenses = new List<OutcomeEntry>
+            {
+                new OutcomeEntry("Hotel", 919.45, PaymentMethod.Card),
+                new OutcomeEntry("Flight", 256.49, PaymentMethod.Card),
+                new OutcomeEntry("Da Nino Restaurant", 101.25, PaymentMethod.Card)
+            };
+            //=========================================================================================================
+            return expenses;
+        }
+
+        public static void InsertEntry(OutcomeEntry entry)
+        {
+            // save to memory
+            var expenses = Load();
+            expenses.Add(entry);
+        }
+
+    }
+
     public class BudgetExpensesAdapter : BaseAdapter<OutcomeEntry>
     {
         List<OutcomeEntry> items;

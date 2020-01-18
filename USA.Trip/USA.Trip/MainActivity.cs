@@ -25,6 +25,7 @@ namespace USA.Trip
         NavigationView navigationView;
         Switch flightNycSwitch, flightKrkSwitch;
         ImageButton othersSubwayButtonOpen, othersSubwayNightButtonOpen;
+        FloatingActionButton budgetExpensesFloatBtn;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -126,7 +127,10 @@ namespace USA.Trip
             flightNycSwitch.Click += FlightNycSwitch_Click;
 
             flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
-            flightKrkSwitch.Click += FlightKrkSwitch_Click; ;
+            flightKrkSwitch.Click += FlightKrkSwitch_Click;
+
+            budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
+            budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
 
             othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
             othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
@@ -138,21 +142,39 @@ namespace USA.Trip
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
 
-            //=========================================================================================================
-            // Populate Outcome
-            var expenses = new List<OutcomeEntry>
-            {
-                new OutcomeEntry("Hotel", 919.45, PaymentMethod.Card),
-                new OutcomeEntry("Flight", 256.49, PaymentMethod.Card),
-                new OutcomeEntry("Da Nino Restaurant", 101.25, PaymentMethod.Card)
-            };
-
-            for (int i=0; i<100; i++)
-                expenses.Add(new OutcomeEntry($"Random_{i}", i, PaymentMethod.Cash));
-            //=========================================================================================================
-
             var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
-            listView.Adapter = new BudgetExpensesAdapter(this, expenses);
+            listView.Adapter = BudgetExpensesAdapterFactory.Create(this);
+        }
+
+        private void BudgetExpensesFloatBtn_Click(object sender, EventArgs e)
+        {
+
+            //try
+            //{
+            //    //ImageButton btn = (ImageButton)sender;
+            //    LayoutInflater layoutInflater = LayoutInflater.From(this);
+            //    View view = layoutInflater.Inflate(Resource.Layout.user_input_dialog_box, null);
+            //    Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+            //    alertbuilder.SetView(view);
+            //    //var userdata = view.FindViewById<EditText>(Resource.Id.inputDialogInputTxt);
+            //    var header = view.FindViewById<TextView>(Resource.Id.inputDialogText);
+            //    header.Text = "Zmień wartość";
+            //    alertbuilder.SetCancelable(false)
+            //    .SetPositiveButton("OK", delegate
+            //    {
+            //        //_ = SetDataAsync(btn.Tag.ToString(), userdata.Text);
+            //    })
+            //    .SetNegativeButton("Anuluj", delegate
+            //    {
+            //        alertbuilder.Dispose();
+            //    });
+            //    Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
+            //    dialog.Show();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+            //}
         }
 
         private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)
