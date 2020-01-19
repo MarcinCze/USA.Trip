@@ -14,5 +14,7 @@
             public const int OthersSubway = 8;
             public const int OthersSubwayNight = 9;
         }
+
+        public const string LocalStorageKeyName = "USA.Trip.LocalStorage";
     }
 }

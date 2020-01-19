@@ -21,6 +21,8 @@ namespace USA.Trip
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
+        LocalStorage localStorage;
+
         ViewFlipper viewFlipper;
         NavigationView navigationView;
         Switch flightNycSwitch, flightKrkSwitch;
@@ -123,6 +125,8 @@ namespace USA.Trip
 
         void Initialize()
         {
+            localStorage = new LocalStorage(this);
+
             flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
             flightNycSwitch.Click += FlightNycSwitch_Click;
 
@@ -143,38 +147,40 @@ namespace USA.Trip
             FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
 
             var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
-            listView.Adapter = BudgetExpensesAdapterFactory.Create(this);
+            listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
         }
 
         private void BudgetExpensesFloatBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                LayoutInflater layoutInflater = LayoutInflater.From(this);
+                View view = layoutInflater.Inflate(Resource.Layout.user_expenses_input_box, null);
+                Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                alertbuilder.SetView(view);
 
-            //try
-            //{
-            //    //ImageButton btn = (ImageButton)sender;
-            //    LayoutInflater layoutInflater = LayoutInflater.From(this);
-            //    View view = layoutInflater.Inflate(Resource.Layout.user_input_dialog_box, null);
-            //    Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
-            //    alertbuilder.SetView(view);
-            //    //var userdata = view.FindViewById<EditText>(Resource.Id.inputDialogInputTxt);
-            //    var header = view.FindViewById<TextView>(Resource.Id.inputDialogText);
-            //    header.Text = "Zmień wartość";
-            //    alertbuilder.SetCancelable(false)
-            //    .SetPositiveButton("OK", delegate
-            //    {
-            //        //_ = SetDataAsync(btn.Tag.ToString(), userdata.Text);
-            //    })
-            //    .SetNegativeButton("Anuluj", delegate
-            //    {
-            //        alertbuilder.Dispose();
-            //    });
-            //    Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
-            //    dialog.Show();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
-            //}
+                view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
+                view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
+                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).Max = 100;
+                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).Min = 0;
+                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).SetProgress(50, true);
+
+                alertbuilder.SetCancelable(false)
+                .SetPositiveButton("OK", delegate
+                { 
+                    //_ = SetDataAsync(btn.Tag.ToString(), userdata.Text);
+                })
+                .SetNegativeButton("Cancel", delegate
+                {
+                    alertbuilder.Dispose();
+                });
+                Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
+                dialog.Show();
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+            }
         }
 
         private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)

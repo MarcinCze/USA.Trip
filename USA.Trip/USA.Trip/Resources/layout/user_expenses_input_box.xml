@@ -1,0 +1,89 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/relativeLayout1">
+
+        <TextView
+            android:id="@+id/inputDialogText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog Title"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText
+            android:id="@+id/inputDialogInputTitleTxt"
+            android:layout_below="@id/inputDialogText1"
+            android:inputType="text"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="" />
+        <TextView
+            android:id="@+id/inputDialogText2"
+            android:layout_below="@id/inputDialogInputTitleTxt"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog Title"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText
+            android:id="@+id/inputDialogInputAmountTxt"
+            android:layout_below="@id/inputDialogText2"
+            android:inputType="numberDecimal"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="" />
+
+        <RadioGroup
+            android:layout_below="@+id/inputDialogInputAmountTxt"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputDialogInputPaymentTypeRadioGroup">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Cash"
+                android:id="@+id/inputDialogInputPaymentTypeRadioCash" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EFT Card"
+                android:id="@+id/inputDialogInputPaymentTypeRadioCard" />
+        </RadioGroup>
+       
+        <SeekBar
+            android:layout_below="@+id/inputDialogInputPaymentTypeRadioGroup"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inputDialogInputDateSeekBar" />
+        
+        <TextView
+            android:id="@+id/inputDialogText3"
+            android:layout_below="@id/inputDialogInputDateSeekBar"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog Title"            
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </RelativeLayout>
+
+</LinearLayout>
