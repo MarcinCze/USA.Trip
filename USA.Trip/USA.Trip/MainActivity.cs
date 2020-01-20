@@ -11,6 +11,7 @@ using Android.Widget;
 using System.Collections.Generic;
 
 using System;
+using static Android.Widget.SeekBar;
 
 namespace USA.Trip
 {
@@ -161,13 +162,37 @@ namespace USA.Trip
 
                 view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
                 view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
-                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).Max = 100;
-                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).Min = 0;
-                view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar).SetProgress(50, true);
+                view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{DateTime.Now:d.MM}";
+                var bar = view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar);
+                bar.Max = DateTime.Now.AddDays(+15).DayOfYear;
+                bar.Min = DateTime.Now.AddDays(-15).DayOfYear;
+                bar.SetProgress(DateTime.Now.DayOfYear, true);
+                bar.ProgressChanged += new EventHandler<ProgressChangedEventArgs>(delegate (object sender, ProgressChangedEventArgs a)
+                {
+                    var theDate = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
+                    view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{theDate:d.MM}";
+                });
 
                 alertbuilder.SetCancelable(false)
                 .SetPositiveButton("OK", delegate
-                { 
+                {
+                    string title = view.FindViewById<EditText>(Resource.Id.inputDialogInputTitleTxt).Text;
+                    string amountString = view.FindViewById<EditText>(Resource.Id.inputDialogInputAmountTxt).Text;
+                    double amount = double.Parse(amountString, System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime creationTime = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
+                    PaymentMethod method = view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked ? PaymentMethod.Cash : PaymentMethod.Card;
+
+                    localStorage.LocalSettings.Expenses.Add(new OutcomeEntry
+                    {
+                        Name = title,
+                        Amount = amount,
+                        Date = creationTime,
+                        Payment = method
+                    });
+                    localStorage.Save(this);
+                    var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
+                    listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+
                     //_ = SetDataAsync(btn.Tag.ToString(), userdata.Text);
                 })
                 .SetNegativeButton("Cancel", delegate
