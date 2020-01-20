@@ -4,6 +4,7 @@ namespace USA.Trip
 {
     public class OutcomeEntry
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public double Amount { get; set; }
         public DateTime Date { get; set; }
@@ -13,6 +14,7 @@ namespace USA.Trip
 
         public OutcomeEntry(string name, double amount, PaymentMethod method)
         {
+            this.Id = Guid.NewGuid().ToString();
             this.Name = name;
             this.Amount = amount;
             this.Payment = method;
@@ -21,6 +23,7 @@ namespace USA.Trip
 
         public OutcomeEntry(string name, double amount, PaymentMethod method, DateTime date)
         {
+            this.Id = Guid.NewGuid().ToString();
             this.Name = name;
             this.Amount = amount;
             this.Payment = method;

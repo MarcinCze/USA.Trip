@@ -9,6 +9,7 @@ using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
+using System.Linq;
 
 using System;
 using static Android.Widget.SeekBar;
@@ -149,63 +150,39 @@ namespace USA.Trip
 
             var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
             listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+
+            listView.ItemClick += ListView_ItemClick;
+            listView.ItemLongClick += ListView_ItemLongClick;
+        }
+
+        private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            OutcomeEntry entry = localStorage.LocalSettings.Expenses.ElementAt((int)e.Id);
+            Android.Support.V7.App.AlertDialog.Builder alertDiag = new Android.Support.V7.App.AlertDialog.Builder(this);
+            alertDiag.SetTitle("Delete");
+            alertDiag.SetMessage($"Are you sure that you want to remove {entry.Name}?");
+            alertDiag.SetPositiveButton("Delete", (senderAlert, args) => {
+                localStorage.LocalSettings.Expenses.RemoveAt((int)e.Id);
+                localStorage.Save(this);
+                var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
+                listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+            });
+            alertDiag.SetNegativeButton("Cancel", (senderAlert, args) => {
+                alertDiag.Dispose();
+            });
+            Dialog diag = alertDiag.Create();
+            diag.Show();
+        }
+
+        private void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            OutcomeEntry entry = localStorage.LocalSettings.Expenses.ElementAt((int)e.Id);
+            ExpensesModifyWindow(entry);
         }
 
         private void BudgetExpensesFloatBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LayoutInflater layoutInflater = LayoutInflater.From(this);
-                View view = layoutInflater.Inflate(Resource.Layout.user_expenses_input_box, null);
-                Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
-                alertbuilder.SetView(view);
-
-                view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
-                view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
-                view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{DateTime.Now:d.MM}";
-                var bar = view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar);
-                bar.Max = DateTime.Now.AddDays(+15).DayOfYear;
-                bar.Min = DateTime.Now.AddDays(-15).DayOfYear;
-                bar.SetProgress(DateTime.Now.DayOfYear, true);
-                bar.ProgressChanged += new EventHandler<ProgressChangedEventArgs>(delegate (object sender, ProgressChangedEventArgs a)
-                {
-                    var theDate = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
-                    view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{theDate:d.MM}";
-                });
-
-                alertbuilder.SetCancelable(false)
-                .SetPositiveButton("OK", delegate
-                {
-                    string title = view.FindViewById<EditText>(Resource.Id.inputDialogInputTitleTxt).Text;
-                    string amountString = view.FindViewById<EditText>(Resource.Id.inputDialogInputAmountTxt).Text;
-                    double amount = double.Parse(amountString, System.Globalization.CultureInfo.InvariantCulture);
-                    DateTime creationTime = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
-                    PaymentMethod method = view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked ? PaymentMethod.Cash : PaymentMethod.Card;
-
-                    localStorage.LocalSettings.Expenses.Add(new OutcomeEntry
-                    {
-                        Name = title,
-                        Amount = amount,
-                        Date = creationTime,
-                        Payment = method
-                    });
-                    localStorage.Save(this);
-                    var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
-                    listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
-
-                    //_ = SetDataAsync(btn.Tag.ToString(), userdata.Text);
-                })
-                .SetNegativeButton("Cancel", delegate
-                {
-                    alertbuilder.Dispose();
-                });
-                Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
-                dialog.Show();
-            }
-            catch (Exception ex)
-            {
-                Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
-            }
+            ExpensesModifyWindow(null);
         }
 
         private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)
@@ -244,6 +221,85 @@ namespace USA.Trip
             {
                 flight1.Visibility = ViewStates.Visible;
                 flight2.Visibility = ViewStates.Invisible;
+            }
+        }
+
+        private void ExpensesModifyWindow(OutcomeEntry entry)
+        {
+            try
+            {
+                LayoutInflater layoutInflater = LayoutInflater.From(this);
+                View view = layoutInflater.Inflate(Resource.Layout.user_expenses_input_box, null);
+                Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                alertbuilder.SetView(view);
+
+                view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
+                view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
+
+                DateTime creationTime = DateTime.Now;
+                if (entry != null)
+                {
+                    view.FindViewById<TextView>(Resource.Id.inputDialogInputTitleTxt).Text = entry.Name;
+                    view.FindViewById<TextView>(Resource.Id.inputDialogInputAmountTxt).Text = entry.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    creationTime = entry.Date; 
+
+                    switch (entry.Payment)
+                    {
+                        case PaymentMethod.Cash:
+                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = true;
+                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = false;
+                            break;
+                        case PaymentMethod.Card:
+                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = false;
+                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = true;
+                            break;
+                    }
+
+                    //TODO FIX CREATION TIME SEEK BAR FOR EDIT
+                }
+
+                view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{creationTime:d.MM}";
+                var bar = view.FindViewById<SeekBar>(Resource.Id.inputDialogInputDateSeekBar);
+                bar.Max = creationTime.AddDays(+15).DayOfYear;
+                bar.Min = creationTime.AddDays(-15).DayOfYear;
+                bar.SetProgress(creationTime.DayOfYear, true);
+                bar.ProgressChanged += new EventHandler<ProgressChangedEventArgs>(delegate (object sender, ProgressChangedEventArgs a)
+                {
+                    var theDate = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
+                    view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{theDate:d.MM}";
+                });
+
+                alertbuilder.SetCancelable(false)
+                .SetPositiveButton("OK", delegate
+                {
+                    string title = view.FindViewById<EditText>(Resource.Id.inputDialogInputTitleTxt).Text;
+                    string amountString = view.FindViewById<EditText>(Resource.Id.inputDialogInputAmountTxt).Text;
+                    double amount = double.Parse(amountString, System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime creationTime = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
+                    PaymentMethod method = view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked ? PaymentMethod.Cash : PaymentMethod.Card;
+
+                    localStorage.LocalSettings.Expenses.Add(new OutcomeEntry
+                    {
+                        Name = title,
+                        Amount = amount,
+                        Date = creationTime,
+                        Payment = method
+                    });
+                    localStorage.LocalSettings.Expenses.OrderBy(x => x.Date);
+                    localStorage.Save(this);
+                    var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
+                    listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+                })
+                .SetNegativeButton("Cancel", delegate
+                {
+                    alertbuilder.Dispose();
+                });
+                Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
+                dialog.Show();
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
             }
         }
     }
