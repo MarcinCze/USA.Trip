@@ -224,7 +224,7 @@ namespace USA.Trip
             }
         }
 
-        private void ExpensesModifyWindow(OutcomeEntry entry)
+        private void ExpensesModifyWindow(OutcomeEntry entryToModify)
         {
             try
             {
@@ -237,13 +237,13 @@ namespace USA.Trip
                 view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
 
                 DateTime creationTime = DateTime.Now;
-                if (entry != null)
+                if (entryToModify != null)
                 {
-                    view.FindViewById<TextView>(Resource.Id.inputDialogInputTitleTxt).Text = entry.Name;
-                    view.FindViewById<TextView>(Resource.Id.inputDialogInputAmountTxt).Text = entry.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                    creationTime = entry.Date; 
+                    view.FindViewById<TextView>(Resource.Id.inputDialogInputTitleTxt).Text = entryToModify.Name;
+                    view.FindViewById<TextView>(Resource.Id.inputDialogInputAmountTxt).Text = entryToModify.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                    creationTime = entryToModify.Date; 
 
-                    switch (entry.Payment)
+                    switch (entryToModify.Payment)
                     {
                         case PaymentMethod.Cash:
                             view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = true;
@@ -254,8 +254,6 @@ namespace USA.Trip
                             view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = true;
                             break;
                     }
-
-                    //TODO FIX CREATION TIME SEEK BAR FOR EDIT
                 }
 
                 view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{creationTime:d.MM}";
@@ -278,13 +276,19 @@ namespace USA.Trip
                     DateTime creationTime = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
                     PaymentMethod method = view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked ? PaymentMethod.Cash : PaymentMethod.Card;
 
-                    localStorage.LocalSettings.Expenses.Add(new OutcomeEntry
+                    if (entryToModify == null)
                     {
-                        Name = title,
-                        Amount = amount,
-                        Date = creationTime,
-                        Payment = method
-                    });
+                        localStorage.LocalSettings.Expenses.Add(new OutcomeEntry(title, amount, method, creationTime));
+                    }
+                    else
+                    {
+                        var entry = localStorage.LocalSettings.Expenses.First(x => x.Id == entryToModify.Id);
+                        entry.Name = title;
+                        entry.Amount = amount;
+                        entry.Date = creationTime;
+                        entry.Payment = method;
+                    }
+                    
                     localStorage.LocalSettings.Expenses.OrderBy(x => x.Date);
                     localStorage.Save(this);
                     var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);

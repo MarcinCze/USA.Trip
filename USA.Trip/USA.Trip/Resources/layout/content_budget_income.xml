@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,10 +7,77 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Budget Income" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/layout_frame">
+        
+        <ImageView
+            android:src="@drawable/icon_credit_card_v2_256"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:minWidth="25px"
+            android:minHeight="25px" />
+
+        <ImageView
+            android:src="@drawable/icon_money_bag_256"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="20dp"
+            android:minWidth="25px"
+            android:minHeight="25px" />
+        
+        <TextView
+            android:text="$ 1500,00"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetIncomeCardLabel" />
+
+        <TextView
+            android:text="$ 810,99"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetIncomeCashLabel" />
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="400dp"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+             <Button
+                android:text="Button"
+                android:layout_marginLeft="40dp"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button1" />
+        
+            <Button
+                android:text="Button"
+                android:layout_marginRight="40dp"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2" />
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
 
 </RelativeLayout>
