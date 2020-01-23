@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace USA.Trip
+namespace USA.Trip.Models
 {
     public class OutcomeEntry
     {

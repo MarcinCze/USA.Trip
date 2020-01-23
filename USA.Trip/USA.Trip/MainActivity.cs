@@ -8,10 +8,12 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using System.Collections.Generic;
-using System.Linq;
 
 using System;
+using System.Linq;
+
+using USA.Trip.Models;
+
 using static Android.Widget.SeekBar;
 
 namespace USA.Trip
@@ -125,7 +127,7 @@ namespace USA.Trip
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        void Initialize()
+        private void Initialize()
         {
             localStorage = new LocalStorage(this);
 
@@ -137,6 +139,11 @@ namespace USA.Trip
 
             budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
             budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
+
+            FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
+            FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
+            FindViewById<Button>(Resource.Id.budgetIncomeCashChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+            FindViewById<Button>(Resource.Id.budgetIncomeCardChangeBtn).Click += BudgetIncomeChangeBtn_Click;
 
             othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
             othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
@@ -153,6 +160,13 @@ namespace USA.Trip
 
             listView.ItemClick += ListView_ItemClick;
             listView.ItemLongClick += ListView_ItemLongClick;
+        }
+
+        private void BudgetIncomeChangeBtn_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            string title = button.Tag.ToString() == "CASH" ? "Cash balance" : "Card balance";
+
         }
 
         private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)

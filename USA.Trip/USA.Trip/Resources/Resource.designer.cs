@@ -3431,16 +3431,16 @@ namespace USA.Trip
 			public const int budgetExpensesListView = 2131230761;
 			
 			// aapt resource value: 0x7F08002A
-			public const int budgetIncomeCardLabel = 2131230762;
+			public const int budgetIncomeCardChangeBtn = 2131230762;
 			
 			// aapt resource value: 0x7F08002B
-			public const int budgetIncomeCashLabel = 2131230763;
+			public const int budgetIncomeCardLabel = 2131230763;
 			
 			// aapt resource value: 0x7F08002C
-			public const int button1 = 2131230764;
+			public const int budgetIncomeCashChangeBtn = 2131230764;
 			
 			// aapt resource value: 0x7F08002D
-			public const int button2 = 2131230765;
+			public const int budgetIncomeCashLabel = 2131230765;
 			
 			// aapt resource value: 0x7F08002E
 			public const int buttonPanel = 2131230766;

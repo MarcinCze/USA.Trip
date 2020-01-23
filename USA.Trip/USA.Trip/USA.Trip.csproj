@@ -69,7 +69,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="LocalStorage.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="OutcomeEntry.cs" />
+    <Compile Include="Models\Income.cs" />
+    <Compile Include="Models\OutcomeEntry.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

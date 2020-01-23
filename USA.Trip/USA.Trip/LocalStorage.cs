@@ -8,17 +8,12 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
+using USA.Trip.Models;
+
 namespace USA.Trip
 {
     public class LocalStorage
     {
-        public class Settings
-        {
-            public DateTime UpdateTimestamp { get; set; }
-            public DateTime? LastSyncTimestamp { get; set; }
-            public List<OutcomeEntry> Expenses { get; set; }
-        }
-
         public Settings LocalSettings { get; protected set; }
 
         public LocalStorage(Context context)
@@ -34,7 +29,7 @@ namespace USA.Trip
             LocalSettings = new Settings
             {
                 UpdateTimestamp = DateTime.Now,
-                LastSyncTimestamp = null,
+                Budget = new Income { Cash = 0, Card = 0 },
                 Expenses = new List<OutcomeEntry>()
             };
             Save(context);
