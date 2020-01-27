@@ -165,8 +165,56 @@ namespace USA.Trip
         private void BudgetIncomeChangeBtn_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
-            string title = button.Tag.ToString() == "CASH" ? "Cash balance" : "Card balance";
+            bool isCash = button.Tag.ToString() == "CASH";
 
+            try
+            {
+                LayoutInflater layoutInflater = LayoutInflater.From(this);
+                View view = layoutInflater.Inflate(Resource.Layout.user_income_input_box, null);
+                Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
+                alertbuilder.SetView(view);
+
+                view.FindViewById<TextView>(Resource.Id.incomeInputTitle).Text = isCash ? "Cash balance" : "Card balance";
+                view.FindViewById<EditText>(Resource.Id.incomeInputAmount).Text = isCash ? 
+                    localStorage.LocalSettings.Budget.Cash.ToString()
+                    : localStorage.LocalSettings.Budget.Card.ToString();
+
+                alertbuilder.SetCancelable(false)
+                .SetPositiveButton("OK", delegate
+                {
+                    double? amount;
+                    try
+                    {
+                        amount = double.Parse(view.FindViewById<EditText>(Resource.Id.incomeInputAmount).Text, System.Globalization.CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception ex)
+                    {
+                        amount = null;
+                        Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                    }
+
+                    if (amount != null)
+                    {
+                        if (isCash)
+                            localStorage.LocalSettings.Budget.Cash = amount.Value;
+                        else
+                            localStorage.LocalSettings.Budget.Card = amount.Value;
+                    }
+
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
+                })
+                .SetNegativeButton("Cancel", delegate
+                {
+                    alertbuilder.Dispose();
+                });
+                Android.Support.V7.App.AlertDialog dialog = alertbuilder.Create();
+                dialog.Show();
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+            }
         }
 
         private void ListView_ItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
