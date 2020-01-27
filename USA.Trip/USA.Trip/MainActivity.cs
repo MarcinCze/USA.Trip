@@ -11,6 +11,7 @@ using Android.Widget;
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using USA.Trip.Models;
 
@@ -203,6 +204,8 @@ namespace USA.Trip
 
                     FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
                     FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
+
+                    _ = Task.Run(() => localStorage.Save(this));
                 })
                 .SetNegativeButton("Cancel", delegate
                 {
@@ -352,7 +355,7 @@ namespace USA.Trip
                     }
                     
                     localStorage.LocalSettings.Expenses.OrderBy(x => x.Date);
-                    localStorage.Save(this);
+                    _ = Task.Run(() => localStorage.Save(this));
                     var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
                     listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
                 })

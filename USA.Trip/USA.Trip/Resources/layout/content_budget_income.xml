@@ -62,20 +62,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
              <Button
-                android:text="Set cash balance"
-                android:tag="CASH"
+                android:text="Set card balance"
+                android:tag="CARD"
                 android:layout_marginLeft="40dp"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/budgetIncomeCashChangeBtn" />
+                android:id="@+id/budgetIncomeCardChangeBtn" />
         
             <Button
-                android:text="Set card balance"
-                android:tag="CARD"
+                android:text="Set cash balance"
+                android:tag="CASH"
                 android:layout_marginRight="40dp"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/budgetIncomeCardChangeBtn" />
+                android:id="@+id/budgetIncomeCashChangeBtn" />
             </LinearLayout>
 
 
