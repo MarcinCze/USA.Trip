@@ -12,6 +12,7 @@ using Android.Widget;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Globalization;
 
 using USA.Trip.Models;
 
@@ -132,41 +133,53 @@ namespace USA.Trip
         {
             localStorage = new LocalStorage(this);
 
-            flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
-            flightNycSwitch.Click += FlightNycSwitch_Click;
+            Task.WaitAll(new Task[]
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
+                    flightNycSwitch.Click += FlightNycSwitch_Click;
+                    flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
+                    flightKrkSwitch.Click += FlightKrkSwitch_Click;
+                    budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
+                    budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
+                }),
 
-            flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
-            flightKrkSwitch.Click += FlightKrkSwitch_Click;
+                Task.Factory.StartNew(() => {
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
+                    FindViewById<Button>(Resource.Id.budgetIncomeCashChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+                    FindViewById<Button>(Resource.Id.budgetIncomeCardChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+                }),
 
-            budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
-            budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
+                Task.Factory.StartNew(() => {
+                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+                }),
 
-            FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
-            FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
-            FindViewById<Button>(Resource.Id.budgetIncomeCashChangeBtn).Click += BudgetIncomeChangeBtn_Click;
-            FindViewById<Button>(Resource.Id.budgetIncomeCardChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+                Task.Factory.StartNew(() => {
+                    othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
+                    othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
+                    othersSubwayNightButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayNightButtonOpen);
+                    othersSubwayNightButtonOpen.Click += OthersSubwayButtonOpen_Click;
+                }),
 
-            othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
-            othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
-            othersSubwayNightButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayNightButtonOpen);
-            othersSubwayNightButtonOpen.Click += OthersSubwayButtonOpen_Click;
-
-            FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
-            FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
-            FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
-            FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+                Task.Factory.StartNew(() => {
+                    UpdateBudgetSummary();
+                })
+            });
 
             var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
             listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
-
             listView.ItemClick += ListView_ItemClick;
             listView.ItemLongClick += ListView_ItemLongClick;
         }
 
         private void BudgetIncomeChangeBtn_Click(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            bool isCash = button.Tag.ToString() == "CASH";
+            bool isCash = ((Button)sender).Tag.ToString().Equals("CASH");
 
             try
             {
@@ -177,8 +190,8 @@ namespace USA.Trip
 
                 view.FindViewById<TextView>(Resource.Id.incomeInputTitle).Text = isCash ? "Cash balance" : "Card balance";
                 view.FindViewById<EditText>(Resource.Id.incomeInputAmount).Text = isCash ? 
-                    localStorage.LocalSettings.Budget.Cash.ToString()
-                    : localStorage.LocalSettings.Budget.Card.ToString();
+                    localStorage.LocalSettings.Budget.Cash.ToString(CultureInfo.InvariantCulture)
+                    : localStorage.LocalSettings.Budget.Card.ToString(CultureInfo.InvariantCulture);
 
                 alertbuilder.SetCancelable(false)
                 .SetPositiveButton("OK", delegate
@@ -186,7 +199,7 @@ namespace USA.Trip
                     double? amount;
                     try
                     {
-                        amount = double.Parse(view.FindViewById<EditText>(Resource.Id.incomeInputAmount).Text, System.Globalization.CultureInfo.InvariantCulture);
+                        amount = double.Parse(view.FindViewById<EditText>(Resource.Id.incomeInputAmount).Text, CultureInfo.InvariantCulture);
                     }
                     catch (Exception ex)
                     {
@@ -202,10 +215,10 @@ namespace USA.Trip
                             localStorage.LocalSettings.Budget.Card = amount.Value;
                     }
 
+                    Task.Run(UpdateBudgetSummary);
+                    Task.Run(() => localStorage.Save(this));
                     FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
                     FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
-
-                    _ = Task.Run(() => localStorage.Save(this));
                 })
                 .SetNegativeButton("Cancel", delegate
                 {
@@ -227,10 +240,11 @@ namespace USA.Trip
             alertDiag.SetTitle("Delete");
             alertDiag.SetMessage($"Are you sure that you want to remove {entry.Name}?");
             alertDiag.SetPositiveButton("Delete", (senderAlert, args) => {
+
                 localStorage.LocalSettings.Expenses.RemoveAt((int)e.Id);
-                localStorage.Save(this);
-                var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
-                listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+                Task.Run(UpdateBudgetSummary);
+                Task.Run(() => localStorage.Save(this));
+                FindViewById<ListView>(Resource.Id.budgetExpensesListView).Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
             });
             alertDiag.SetNegativeButton("Cancel", (senderAlert, args) => {
                 alertDiag.Dispose();
@@ -298,27 +312,21 @@ namespace USA.Trip
                 Android.Support.V7.App.AlertDialog.Builder alertbuilder = new Android.Support.V7.App.AlertDialog.Builder(this);
                 alertbuilder.SetView(view);
 
-                view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
-                view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
+                Task.Run(() => {
+                    view.FindViewById<TextView>(Resource.Id.inputDialogText1).Text = "Title";
+                    view.FindViewById<TextView>(Resource.Id.inputDialogText2).Text = "Amount";
+                });
 
                 DateTime creationTime = DateTime.Now;
                 if (entryToModify != null)
                 {
-                    view.FindViewById<TextView>(Resource.Id.inputDialogInputTitleTxt).Text = entryToModify.Name;
-                    view.FindViewById<TextView>(Resource.Id.inputDialogInputAmountTxt).Text = entryToModify.Amount.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                    creationTime = entryToModify.Date; 
-
-                    switch (entryToModify.Payment)
-                    {
-                        case PaymentMethod.Cash:
-                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = true;
-                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = false;
-                            break;
-                        case PaymentMethod.Card:
-                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = false;
-                            view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = true;
-                            break;
-                    }
+                    Task.Run(() => {
+                        creationTime = entryToModify.Date;
+                        view.FindViewById<TextView>(Resource.Id.inputDialogInputTitleTxt).Text = entryToModify.Name;
+                        view.FindViewById<TextView>(Resource.Id.inputDialogInputAmountTxt).Text = entryToModify.Amount.ToString(CultureInfo.InvariantCulture);
+                        view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked = entryToModify.Payment == PaymentMethod.Cash;
+                        view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCard).Checked = entryToModify.Payment == PaymentMethod.Card;
+                    });
                 }
 
                 view.FindViewById<TextView>(Resource.Id.inputDialogText3).Text = $"{creationTime:d.MM}";
@@ -337,7 +345,7 @@ namespace USA.Trip
                 {
                     string title = view.FindViewById<EditText>(Resource.Id.inputDialogInputTitleTxt).Text;
                     string amountString = view.FindViewById<EditText>(Resource.Id.inputDialogInputAmountTxt).Text;
-                    double amount = double.Parse(amountString, System.Globalization.CultureInfo.InvariantCulture);
+                    double amount = double.Parse(amountString, CultureInfo.InvariantCulture);
                     DateTime creationTime = new DateTime(2020, 1, 1).AddDays(bar.Progress - 1);
                     PaymentMethod method = view.FindViewById<RadioButton>(Resource.Id.inputDialogInputPaymentTypeRadioCash).Checked ? PaymentMethod.Cash : PaymentMethod.Card;
 
@@ -355,7 +363,9 @@ namespace USA.Trip
                     }
                     
                     localStorage.LocalSettings.Expenses.OrderBy(x => x.Date);
-                    _ = Task.Run(() => localStorage.Save(this));
+
+                    Task.Run(UpdateBudgetSummary);
+                    Task.Run(() => localStorage.Save(this));
                     var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
                     listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
                 })
@@ -370,6 +380,18 @@ namespace USA.Trip
             {
                 Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
             }
+        }
+
+        private void UpdateBudgetSummary()
+        {
+            FindViewById<TextView>(Resource.Id.budgetSummaryIncomeLabel).Text =
+                $"$ {localStorage.LocalSettings.Budget.Cash + localStorage.LocalSettings.Budget.Card:0.00}";
+            FindViewById<TextView>(Resource.Id.budgetSummaryExpensesLabel).Text =
+                $"$ {localStorage.LocalSettings.Expenses.Sum(x => x.Amount):0.00}";
+            FindViewById<TextView>(Resource.Id.budgetSummaryRestCashLabel).Text =
+                $"$ {localStorage.LocalSettings.Budget.Cash - localStorage.LocalSettings.Expenses.Where(x => x.Payment == PaymentMethod.Cash).Sum(x => x.Amount):0.00}";
+            FindViewById<TextView>(Resource.Id.budgetSummaryRestCardLabel).Text =
+                $"$ {localStorage.LocalSettings.Budget.Card - localStorage.LocalSettings.Expenses.Where(x => x.Payment == PaymentMethod.Card).Sum(x => x.Amount):0.00}";
         }
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,10 +7,55 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Budget Summary" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/layout_frame">
+        
+        <TextView
+            android:text="$ 2159,00"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetSummaryIncomeLabel" />
 
+        <TextView
+            android:text="$ 159,00"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetSummaryExpensesLabel" />
+
+        <TextView
+            android:text="$ 159,00"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetSummaryRestCashLabel" />
+
+        <TextView
+            android:text="$ 159,00"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:id="@+id/budgetSummaryRestCardLabel" />
+
+    </RelativeLayout>
 </RelativeLayout>

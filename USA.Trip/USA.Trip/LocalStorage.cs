@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using USA.Trip.Models;
 
 namespace USA.Trip
@@ -32,7 +32,7 @@ namespace USA.Trip
                 Budget = new Income { Cash = 0, Card = 0 },
                 Expenses = new List<OutcomeEntry>()
             };
-            Save(context);
+            Task.Run(() => Save(context));
         }
 
         protected void Read(Context context)
