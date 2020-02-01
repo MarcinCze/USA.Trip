@@ -15,7 +15,7 @@
             android:layout_alignParentBottom="true"
             android:scaleType="fitCenter"
             app:backgroundTint="#FFFFFF"
-            android:src="@drawable/icon_add_256"
+            android:src="@drawable/icon_add_96"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp" />
 

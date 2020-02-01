@@ -234,11 +234,6 @@
     <AndroidResource Include="Resources\drawable\icon_pointer_100.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\content_others_subway_night.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon_other_subway_pdf_256.png" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +286,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon_budget_summary_chevron_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\icon_add_96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

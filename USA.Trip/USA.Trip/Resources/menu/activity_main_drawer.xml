@@ -50,10 +50,6 @@
           android:id="@+id/nav_others_subway"
           android:icon="@drawable/nav_others_subway_100"
           android:title="Subway" />
-      <item
-          android:id="@+id/nav_others_subway_night"
-          android:icon="@drawable/nav_others_subway_100"
-          android:title="Subway Night" />
     </menu>
   </item>
 

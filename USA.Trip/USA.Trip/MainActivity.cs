@@ -32,7 +32,7 @@ namespace USA.Trip
         ViewFlipper viewFlipper;
         NavigationView navigationView;
         Switch flightNycSwitch, flightKrkSwitch;
-        ImageButton othersSubwayButtonOpen, othersSubwayNightButtonOpen;
+        ImageButton othersSubwayButtonOpen;
         FloatingActionButton budgetExpensesFloatBtn;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -109,9 +109,6 @@ namespace USA.Trip
                 case Resource.Id.nav_others_subway:
                     viewFlipper.DisplayedChild = Constants.Views.OthersSubway;
                     break;
-                case Resource.Id.nav_others_subway_night:
-                    viewFlipper.DisplayedChild = Constants.Views.OthersSubwayNight;
-                    break;
                 default:
                     Toast.MakeText(Application.Context, "View not found", ToastLength.Short).Show();
                     break;
@@ -162,8 +159,6 @@ namespace USA.Trip
                 Task.Factory.StartNew(() => {
                     othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
                     othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
-                    othersSubwayNightButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayNightButtonOpen);
-                    othersSubwayNightButtonOpen.Click += OthersSubwayButtonOpen_Click;
                 }),
 
                 Task.Factory.StartNew(() => {
