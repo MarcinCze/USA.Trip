@@ -83,7 +83,81 @@ namespace USA.Trip
 
         public bool OnNavigationItemSelected(IMenuItem item)
         {
-            switch (item.ItemId)
+            return ChangeScreen(item.ItemId);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void Initialize()
+        {
+            localStorage = new LocalStorage(this);
+
+            Task.WaitAll(new Task[]
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
+                    flightNycSwitch.Click += FlightNycSwitch_Click;
+                    flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
+                    flightKrkSwitch.Click += FlightKrkSwitch_Click;
+                    budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
+                    budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
+                }),
+
+                Task.Factory.StartNew(() =>
+                {
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
+                    FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
+                    FindViewById<Button>(Resource.Id.budgetIncomeCashChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+                    FindViewById<Button>(Resource.Id.budgetIncomeCardChangeBtn).Click += BudgetIncomeChangeBtn_Click;
+                }),
+
+                Task.Factory.StartNew(() =>
+                {
+                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
+                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
+                }),
+
+                Task.Factory.StartNew(() =>
+                {
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardFlightUS).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardFlightPL).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardBudgetSum).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardBudgetIncome).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardBudgetOutcome).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardHotel).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardSubway).Click += DashboardButton_Clicked;
+                    FindViewById<ImageButton>(Resource.Id.btnDashboardConverter).Click += DashboardButton_Clicked;
+                }),
+
+                Task.Factory.StartNew(() =>
+                {
+                    othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
+                    othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
+                }),
+
+                Task.Factory.StartNew(() => 
+                {
+                    UpdateBudgetSummary();
+                })
+            });
+
+            var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
+            listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
+            listView.ItemClick += ListView_ItemClick;
+            listView.ItemLongClick += ListView_ItemLongClick;
+        }
+
+        private bool ChangeScreen(int id)
+        {
+            switch (id)
             {
                 case Resource.Id.nav_dashboard:
                     viewFlipper.DisplayedChild = Constants.Views.Dashboard;
@@ -119,57 +193,39 @@ namespace USA.Trip
             return true;
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        private void DashboardButton_Clicked(object sender, EventArgs e)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            string btnTag = ((ImageButton)sender).Tag.ToString();
 
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        private void Initialize()
-        {
-            localStorage = new LocalStorage(this);
-
-            Task.WaitAll(new Task[]
+            switch (btnTag)
             {
-                Task.Factory.StartNew(() =>
-                {
-                    flightNycSwitch = FindViewById<Switch>(Resource.Id.flightNycSwitch);
-                    flightNycSwitch.Click += FlightNycSwitch_Click;
-                    flightKrkSwitch = FindViewById<Switch>(Resource.Id.flightKrkSwitch);
-                    flightKrkSwitch.Click += FlightKrkSwitch_Click;
-                    budgetExpensesFloatBtn = FindViewById<FloatingActionButton>(Resource.Id.budgetExpensesAddButton);
-                    budgetExpensesFloatBtn.Click += BudgetExpensesFloatBtn_Click;
-                }),
-
-                Task.Factory.StartNew(() => {
-                    FindViewById<TextView>(Resource.Id.budgetIncomeCashLabel).Text = $"$ {localStorage.LocalSettings.Budget.Cash:0.00}";
-                    FindViewById<TextView>(Resource.Id.budgetIncomeCardLabel).Text = $"$ {localStorage.LocalSettings.Budget.Card:0.00}";
-                    FindViewById<Button>(Resource.Id.budgetIncomeCashChangeBtn).Click += BudgetIncomeChangeBtn_Click;
-                    FindViewById<Button>(Resource.Id.budgetIncomeCardChangeBtn).Click += BudgetIncomeChangeBtn_Click;
-                }),
-
-                Task.Factory.StartNew(() => {
-                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight1).Visibility = ViewStates.Visible;
-                    FindViewById<RelativeLayout>(Resource.Id.flightNycFlight2).Visibility = ViewStates.Invisible;
-                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight1).Visibility = ViewStates.Visible;
-                    FindViewById<RelativeLayout>(Resource.Id.flightKrkFlight2).Visibility = ViewStates.Invisible;
-                }),
-
-                Task.Factory.StartNew(() => {
-                    othersSubwayButtonOpen = FindViewById<ImageButton>(Resource.Id.othersSubwayButtonOpen);
-                    othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
-                }),
-
-                Task.Factory.StartNew(() => {
-                    UpdateBudgetSummary();
-                })
-            });
-
-            var listView = FindViewById<ListView>(Resource.Id.budgetExpensesListView);
-            listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
-            listView.ItemClick += ListView_ItemClick;
-            listView.ItemLongClick += ListView_ItemLongClick;
+                case "BTN_DASHBOARD_FLIGHTUS":
+                    ChangeScreen(Resource.Id.nav_flight_nyc);
+                    break;
+                case "BTN_DASHBOARD_FLIGHTPL":
+                    ChangeScreen(Resource.Id.nav_flight_krk);
+                    break;
+                case "BTN_DASHBOARD_BUDGET_SUM":
+                    ChangeScreen(Resource.Id.nav_budget_summary);
+                    break;
+                case "BTN_DASHBOARD_BUDGET_IN":
+                    ChangeScreen(Resource.Id.nav_budget_income);
+                    break;
+                case "BTN_DASHBOARD_BUDGET_OUT":
+                    ChangeScreen(Resource.Id.nav_budget_expenses);
+                    break;
+                case "BTN_DASHBOARD_HOTEL":
+                    ChangeScreen(Resource.Id.nav_others_hotel);
+                    break;
+                case "BTN_DASHBOARD_SUBWAY":
+                    ChangeScreen(Resource.Id.nav_others_subway);
+                    break;
+                case "BTN_DASHBOARD_CONVERTER":
+                    ChangeScreen(0);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void BudgetIncomeChangeBtn_Click(object sender, EventArgs e)

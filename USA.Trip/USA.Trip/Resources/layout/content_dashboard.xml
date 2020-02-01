@@ -7,10 +7,84 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Dashboard" />
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:tag="BTN_DASHBOARD_FLIGHTUS"
+        android:id="@+id/btnDashboardFlightUS" />
+    
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:tag="BTN_DASHBOARD_FLIGHTPL"
+        android:id="@+id/btnDashboardFlightPL" />
+
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:tag="BTN_DASHBOARD_BUDGET_SUM"
+        android:id="@+id/btnDashboardBudgetSum" />
+    
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="350dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:tag="BTN_DASHBOARD_BUDGET_IN"
+        android:id="@+id/btnDashboardBudgetIncome" />
+    
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="350dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:tag="BTN_DASHBOARD_BUDGET_OUT"
+        android:id="@+id/btnDashboardBudgetOutcome" />
+
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="350dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:tag="BTN_DASHBOARD_HOTEL"
+        android:id="@+id/btnDashboardHotel" />
+    
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="550dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="25dp"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:tag="BTN_DASHBOARD_SUBWAY"
+        android:id="@+id/btnDashboardSubway" />
+
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginTop="550dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:tag="BTN_DASHBOARD_CONVERTER"
+        android:id="@+id/btnDashboardConverter" />
 
 </RelativeLayout>

@@ -7,11 +7,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
     
-        <!--<ImageView
-        android:src="@drawable/main_screen_bg"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />-->
+    
 
 </RelativeLayout>
