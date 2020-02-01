@@ -153,6 +153,8 @@ namespace USA.Trip
             listView.Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
             listView.ItemClick += ListView_ItemClick;
             listView.ItemLongClick += ListView_ItemLongClick;
+
+            ChangeScreen(Resource.Id.nav_dashboard);
         }
 
         private bool ChangeScreen(int id)

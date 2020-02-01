@@ -8,74 +8,95 @@
     tools:showIn="@layout/app_bar_main">
 
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_flight_nyc_100"
         android:layout_marginTop="150dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:minWidth="25px"
         android:minHeight="25px"
+        android:padding="20dp"
+        android:scaleType="fitCenter"
         android:tag="BTN_DASHBOARD_FLIGHTUS"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardFlightUS" />
     
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_flight_krk_100"
         android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_FLIGHTPL"
+        android:scaleType="fitCenter"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardFlightPL" />
 
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_budget_summary_100"
         android:layout_marginTop="150dp"
         android:layout_marginRight="25dp"
         android:layout_alignParentRight="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_BUDGET_SUM"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardBudgetSum" />
     
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_budget_income_100"
         android:layout_marginTop="350dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:minWidth="25px"
         android:minHeight="25px"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_BUDGET_IN"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardBudgetIncome" />
     
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_budget_expenses_100"
         android:layout_marginTop="350dp"
         android:layout_centerHorizontal="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_BUDGET_OUT"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardBudgetOutcome" />
 
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_others_hotel_100"
         android:layout_marginTop="350dp"
         android:layout_marginRight="25dp"
         android:layout_alignParentRight="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_HOTEL"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardHotel" />
     
     <ImageButton
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/nav_others_subway_100"
         android:layout_marginTop="550dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="25dp"
         android:minWidth="25px"
         android:minHeight="25px"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_SUBWAY"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardSubway" />
 
     <ImageButton
@@ -84,7 +105,10 @@
         android:layout_centerHorizontal="true"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:padding="20dp"
         android:tag="BTN_DASHBOARD_CONVERTER"
+        android:background="@drawable/layout_frame"
         android:id="@+id/btnDashboardConverter" />
 
 </RelativeLayout>
