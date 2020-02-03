@@ -17,6 +17,7 @@ using System.Globalization;
 using USA.Trip.Models;
 
 using static Android.Widget.SeekBar;
+using Android.Content;
 
 namespace USA.Trip
 {
@@ -185,6 +186,9 @@ namespace USA.Trip
                 case Resource.Id.nav_others_subway:
                     viewFlipper.DisplayedChild = Constants.Views.OthersSubway;
                     break;
+                case Resource.Id.nav_others_converter:
+                    viewFlipper.DisplayedChild = Constants.Views.OthersConverter;
+                    break;
                 default:
                     Toast.MakeText(Application.Context, "View not found", ToastLength.Short).Show();
                     break;
@@ -295,6 +299,7 @@ namespace USA.Trip
             alertDiag.SetPositiveButton("Delete", (senderAlert, args) => {
 
                 localStorage.LocalSettings.Expenses.RemoveAt((int)e.Id);
+                localStorage.LocalSettings.Expenses = localStorage.LocalSettings.Expenses.OrderBy(x => x.Date).ToList();
                 Task.Run(UpdateBudgetSummary);
                 Task.Run(() => localStorage.Save(this));
                 FindViewById<ListView>(Resource.Id.budgetExpensesListView).Adapter = BudgetExpensesAdapterFactory.Create(this, localStorage);
@@ -319,7 +324,15 @@ namespace USA.Trip
 
         private void OthersSubwayButtonOpen_Click(object sender, EventArgs e)
         {
-            Toast.MakeText(Application.Context, $"NOT IMPLEMENTED", ToastLength.Long).Show();
+            try
+            {
+                Intent intent = PackageManager.GetLaunchIntentForPackage("com.thryvinc.nycmap");
+                StartActivity(intent);
+            }
+            catch (Exception ex)
+            {
+                Toast.MakeText(Application.Context, $"{ex.Message}", ToastLength.Long).Show();
+            }
         }
 
         private void FlightKrkSwitch_Click(object sender, EventArgs e)
@@ -414,8 +427,8 @@ namespace USA.Trip
                         entry.Date = creationTime;
                         entry.Payment = method;
                     }
-                    
-                    localStorage.LocalSettings.Expenses.OrderBy(x => x.Date);
+
+                    localStorage.LocalSettings.Expenses = localStorage.LocalSettings.Expenses.OrderBy(x => x.Date).ToList();
 
                     Task.Run(UpdateBudgetSummary);
                     Task.Run(() => localStorage.Save(this));
@@ -448,4 +461,3 @@ namespace USA.Trip
         }
     }
 }
-

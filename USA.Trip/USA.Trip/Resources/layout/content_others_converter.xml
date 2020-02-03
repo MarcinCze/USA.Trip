@@ -8,13 +8,6 @@
     tools:showIn="@layout/app_bar_main">
     
     
-    <ImageButton
-        android:layout_centerInParent="true"
-        android:src="@drawable/mta_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:tag="SUBWAY_NORMAL"
-        android:background="@drawable/layout_frame"
-        android:id="@+id/othersSubwayButtonOpen" />
+
 
 </RelativeLayout>
