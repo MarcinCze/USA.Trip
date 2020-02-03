@@ -227,7 +227,7 @@ namespace USA.Trip
                     ChangeScreen(Resource.Id.nav_others_subway);
                     break;
                 case "BTN_DASHBOARD_CONVERTER":
-                    ChangeScreen(0);
+                    ChangeScreen(Resource.Id.nav_others_converter);
                     break;
                 default:
                     break;
