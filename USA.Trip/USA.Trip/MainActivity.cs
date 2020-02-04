@@ -69,11 +69,16 @@ namespace USA.Trip
             if(drawer.IsDrawerOpen(GravityCompat.Start))
             {
                 drawer.CloseDrawer(GravityCompat.Start);
+                return;
             }
-            else
+
+            if (viewFlipper.DisplayedChild != Constants.Views.Dashboard)
             {
-                base.OnBackPressed();
+                viewFlipper.DisplayedChild = Constants.Views.Dashboard;
+                return;
             }
+
+            base.OnBackPressed();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
