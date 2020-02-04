@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterInch"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -35,6 +36,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterInchCm"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -63,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterFoot"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -80,6 +83,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterFootCm"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -96,7 +100,7 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -108,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterMile"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -125,6 +130,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterMileKm"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -141,7 +147,7 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -153,6 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterFlOz"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -171,6 +178,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterFlOzMl"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -188,7 +196,7 @@
             android:textAlignment="center"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -200,6 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterGal"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -217,6 +226,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterGalL"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -233,7 +243,7 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -245,6 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterOz"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -262,6 +273,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterOzG"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -278,7 +290,7 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
             android:layout_marginLeft="10dp"
@@ -290,6 +302,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/inputConverterLb"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -307,6 +320,7 @@
             android:minWidth="25px"
             android:minHeight="25px" />
         <EditText
+            android:id="@+id/inputConverterLbG"
             android:inputType="numberDecimal"
             android:textColor="#FFFFFF"
             android:textAlignment="center"
@@ -323,6 +337,6 @@
             android:layout_height="wrap_content"
             android:minWidth="25px"
             android:minHeight="25px" />
-        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

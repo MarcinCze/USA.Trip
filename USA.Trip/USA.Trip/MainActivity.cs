@@ -144,9 +144,14 @@ namespace USA.Trip
                     othersSubwayButtonOpen.Click += OthersSubwayButtonOpen_Click;
                 }),
 
-                Task.Factory.StartNew(() => 
+                Task.Factory.StartNew(() =>
                 {
                     UpdateBudgetSummary();
+                }),
+
+                Task.Factory.StartNew(() =>
+                {
+                    InitializeConverterInputs();
                 })
             });
 
@@ -156,6 +161,194 @@ namespace USA.Trip
             listView.ItemLongClick += ListView_ItemLongClick;
 
             ChangeScreen(Resource.Id.nav_dashboard);
+        }
+
+        private void InitializeConverterInputs()
+        {
+            static void AssignCalculation(EditText source, EditText destination, double calcResult)
+            {
+                if (source.Tag != null)
+                {
+                    if (source.Tag.ToString().Equals("CALC"))
+                    {
+                        return;
+                    }
+                }
+
+                destination.Tag = "CALC";
+                destination.Text = calcResult.ToString("N2", CultureInfo.InvariantCulture);
+                destination.Tag = null;
+            }
+
+            // Inches <-> Centimetres
+            // 1 in = 2.54 cm
+            FindViewById<EditText>(Resource.Id.inputConverterInch).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterInch).Text, CultureInfo.InvariantCulture);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterInch),
+                        FindViewById<EditText>(Resource.Id.inputConverterInchCm),
+                        value * 2.54
+                    );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterInchCm).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterInchCm).Text, CultureInfo.InvariantCulture);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterInchCm),
+                        FindViewById<EditText>(Resource.Id.inputConverterInch),
+                        value / 2.54
+                        );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
+            // Feet <-> Centimetres
+            // 1 ft = 30.48
+            FindViewById<EditText>(Resource.Id.inputConverterFoot).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterFoot).Text, CultureInfo.InvariantCulture);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterFoot),
+                        FindViewById<EditText>(Resource.Id.inputConverterFootCm),
+                        value * 30.48
+                        );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterFootCm).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterFootCm).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterFootCm),
+                        FindViewById<EditText>(Resource.Id.inputConverterFoot),
+                        value / 30.48
+                        );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
+            // Fluid ounce <-> mililitres
+            // 1 fl <-> 29,5735296875 ml
+            FindViewById<EditText>(Resource.Id.inputConverterFlOz).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterFlOzMl).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
+            // Gallon <-> litres
+            // 1 gal = 3.78541178 l
+            FindViewById<EditText>(Resource.Id.inputConverterGal).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterGalL).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
+            // Ounce <-> grams
+            // 1 oz = 28.3495231 g
+            FindViewById<EditText>(Resource.Id.inputConverterOz).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterOzG).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
+            // Pounds <-> grams
+            // 1 lb = 453.59237 g
+            FindViewById<EditText>(Resource.Id.inputConverterLb).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterLbG).TextChanged += (delegate
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
         }
 
         private bool ChangeScreen(int id)
