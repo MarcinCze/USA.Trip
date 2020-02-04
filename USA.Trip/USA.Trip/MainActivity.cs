@@ -250,6 +250,41 @@ namespace USA.Trip
                 }
             });
 
+            // Mile <-> km
+            // 1 mi = 1.609344 km
+            FindViewById<EditText>(Resource.Id.inputConverterMile).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterMile).Text, CultureInfo.InvariantCulture);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterMile),
+                        FindViewById<EditText>(Resource.Id.inputConverterMileKm),
+                        value * 1.609344
+                        );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+            FindViewById<EditText>(Resource.Id.inputConverterMileKm).TextChanged += (delegate
+            {
+                try
+                {
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterMileKm).Text, CultureInfo.InvariantCulture);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterMileKm),
+                        FindViewById<EditText>(Resource.Id.inputConverterMile),
+                        value / 1.609344
+                        );
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            });
+
             // Fluid ounce <-> mililitres
             // 1 fl <-> 29,5735296875 ml
             FindViewById<EditText>(Resource.Id.inputConverterFlOz).TextChanged += (delegate
