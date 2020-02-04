@@ -256,7 +256,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterFlOz).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterFlOz),
+                        FindViewById<EditText>(Resource.Id.inputConverterFlOzMl),
+                        value * 29.5735296875
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -267,7 +272,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterFlOzMl).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterFlOzMl),
+                        FindViewById<EditText>(Resource.Id.inputConverterFlOz),
+                        value / 29.5735296875
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -281,7 +291,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterGal).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterGal),
+                        FindViewById<EditText>(Resource.Id.inputConverterGalL),
+                        value * 3.78541178
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -292,7 +307,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterGalL).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterGalL),
+                        FindViewById<EditText>(Resource.Id.inputConverterGal),
+                        value / 3.78541178
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -306,7 +326,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterOz).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterOz),
+                        FindViewById<EditText>(Resource.Id.inputConverterOzG),
+                        value * 28.3495231
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -317,7 +342,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterOzG).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterOzG),
+                        FindViewById<EditText>(Resource.Id.inputConverterOz),
+                        value / 28.3495231
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -331,7 +361,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterLb).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterLb),
+                        FindViewById<EditText>(Resource.Id.inputConverterLbG),
+                        value * 453.59237
+                        );
                 }
                 catch (Exception ex)
                 {
@@ -342,7 +377,12 @@ namespace USA.Trip
             {
                 try
                 {
-
+                    double value = double.Parse(FindViewById<EditText>(Resource.Id.inputConverterLbG).Text);
+                    AssignCalculation(
+                        FindViewById<EditText>(Resource.Id.inputConverterLbG),
+                        FindViewById<EditText>(Resource.Id.inputConverterLb),
+                        value / 453.59237
+                        );
                 }
                 catch (Exception ex)
                 {
