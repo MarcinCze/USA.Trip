@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -10,14 +11,13 @@ using Android.Views;
 using Android.Widget;
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Globalization;
 
 using USA.Trip.Models;
 
 using static Android.Widget.SeekBar;
-using Android.Content;
 
 namespace USA.Trip
 {

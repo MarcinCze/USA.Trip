@@ -3,6 +3,7 @@ using Android.Views;
 using Android.Widget;
 
 using System.Collections.Generic;
+
 using USA.Trip.Models;
 
 namespace USA.Trip
