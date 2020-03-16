@@ -1,5 +1,6 @@
 # USA.Trip
 Application build for the trip to USA. Currently it's customized for NYC trip.
+Another Xamarin PoC.
 
 ### Features
 - Information about flight to USA (2-step flight)
